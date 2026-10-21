@@ -1,33 +1,30 @@
 <?php
 header('Content-Type: image/jpeg');
 
+$file = "017040";
 if (isset($_GET['file'])) {
-    $filename = $_GET['file'];
-    $imagePath = "images/" . $filename . ".jpg";
+    $file = $_GET['file'];
+}
 
-    $img = imagecreatefromjpeg($imagePath);
+$w = 500;
+if (isset($_GET['width'])) {
+    $w = $_GET['width'];
+}
 
-    $font = realpath('font/Lato-Medium.ttf');  
-    $color = imagecolorallocate($img, 255, 255, 255); 
+$imgname = "images/" . $file . ".jpg";
+$img = imagecreatefromjpeg($imgname);
+$newimg = imagescale($img, $w, $w);
 
-    //gets text and sizes
-    $text1 = isset($_GET['text1']) ? $_GET['text1'] : '';
-    $text2 = isset($_GET['text2']) ? $_GET['text2'] : '';
-    $size1 = isset($_GET['size1']) ? intval($_GET['size1']) : 24; // Default size
-    $size2 = isset($_GET['size2']) ? intval($_GET['size2']) : 48; // Default size
+$fontFile = realpath('font/Lato-Heavy.ttf');
+$textColor = imagecolorallocate($newimg, 255, 255, 255);
 
-    //adds text to image
-    if (!empty($text1)) {
-        imagettftext($img, $size1, 0, 10, 100, $color, $font, $text1);
-    }
-    if (!empty($text2)) {
-        imagettftext($img, $size2, 0, 10, 900, $color, $font, $text2);
-    }
+if (isset($_GET['text1']) && isset($_GET['size1'])) {
+    imagettftext($newimg, $_GET['size1'], 0, 20, $_GET['size1'] + 30, $textColor, $fontFile, $_GET['text1']);
+}
 
-    //gets width & sets default to 100
-    $w = isset($_GET['width']) ? intval($_GET['width']) : 100;
-    $newImg = imagescale($img, $w, $w);
+if (isset($_GET['text2']) && isset($_GET['size2'])) {
+    imagettftext($newimg, $_GET['size2'], 0, 20, $w - 30, $textColor, $fontFile, $_GET['text2']);
+}
 
-    imagejpeg($newImg);
- }
+imagejpeg($newimg);
 ?>
