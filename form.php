@@ -26,11 +26,9 @@
         <label>Select Base Painting:</label>
         <select name="file" id="whichPainting">
             <?php
-                foreach ($paintings as $painting) {
-                    $filename = $painting['filename'];
-                     //outputs paintng options
-                    echo "<option value='$filename'>{$painting['title']}</option>";
-                }
+            foreach ($paintings as $painting) {
+                echo '<option value="' . $painting['filename'] . '">' . $painting['title'] . '</option>';
+            }
             ?>
         </select>
 
