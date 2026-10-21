@@ -33,11 +33,11 @@
         </select>
 
         <label>Meme 1 Text:</label>
-        <input type="text" name="text1" size=50 value="Default text" />
+        <input type="text" name="text1" size=50 value="Welcome to the" />
         <label>Meme 1 Font Size:</label>
         12 <input type="range" name="size1" min=12 max=64  value=24 /> 64
         <label>Meme 2 Text:</label>
-        <input type="text" name="text2" size=50 value="More text"/>   
+        <input type="text" name="text2" size=50 value="Fine Art Meme Maker"/>
         <label>Meme 2 Font Size:</label>
         12 <input type="range" name="size2" min=12 max=48 value=48 /> 48  
         <label>Image Width:</label>
